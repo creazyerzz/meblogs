@@ -1,0 +1,104 @@
+name: 🚀 部署到阿里云 ECS
+
+on:
+  push:
+    branches:
+      - main          # 推送到 main 分支时自动部署
+  workflow_dispatch:  # 支持手动触发
+
+# 防止并发部署
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  # ============================================================
+  # Job 1: 代码检查 & 构建测试
+  # ============================================================
+  lint-and-build:
+    name: 🔍 代码检查 & 构建
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: ESLint 检查
+        run: npm run lint
+
+      - name: TypeScript 类型检查
+        run: npx tsc --noEmit
+
+      - name: 构建测试
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+  # ============================================================
+  # Job 2: 部署到服务器
+  # ============================================================
+  deploy:
+    name: 🚢 部署到生产服务器
+    runs-on: ubuntu-latest
+    needs: lint-and-build   # 等待上一个 Job 成功
+    environment:
+      name: production
+      url: https://${{ secrets.DOMAIN }}
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 通过 SSH 部署到服务器
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USER }}
+          key: ${{ secrets.ECS_SSH_KEY }}
+          port: ${{ secrets.ECS_PORT || 22 }}
+          script: |
+            set -e
+            
+            # 加载 nvm
+            export NVM_DIR="/root/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+            nvm use 20
+            
+            # 进入应用目录
+            cd /var/www/my-blog
+            
+            echo "📥 拉取最新代码..."
+            git fetch origin main
+            git reset --hard origin/main
+            
+            echo "📦 安装依赖..."
+            npm ci
+            
+            echo "🔨 构建项目..."
+            NODE_ENV=production npm run build
+            
+            echo "🔄 重启 PM2 进程..."
+            pm2 restart my-blog || pm2 start ecosystem.config.json
+            pm2 save
+            
+            echo "✅ 部署完成！"
+            pm2 status
+
+      - name: 部署成功通知
+        if: success()
+        run: |
+          echo "🎉 部署成功！"
+          echo "访问地址: https://${{ secrets.DOMAIN }}"
+
+      - name: 部署失败通知
+        if: failure()
+        run: |
+          echo "❌ 部署失败，请检查日志"
