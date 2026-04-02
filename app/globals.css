@@ -5,65 +5,127 @@
 @layer base {
   :root {
     --color-primary: 99 102 241;
+    --color-secondary: 168 85 247;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  /* 文章内容样式 */
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    @apply font-bold tracking-tight;
+  body {
+    @apply bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  .prose h1 { @apply text-3xl mt-8 mb-4; }
-  .prose h2 { @apply text-2xl mt-8 mb-3 border-b border-gray-200 dark:border-gray-700 pb-2; }
-  .prose h3 { @apply text-xl mt-6 mb-2; }
+  /* 精选排版 */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-zinc-900 dark:text-white;
+  }
 
-  .prose p { @apply leading-7 mb-4 text-gray-700 dark:text-gray-300; }
+  /* 文章内容样式 */
+  .prose {
+    @apply text-zinc-600 dark:text-zinc-400;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose h1 {
+    @apply text-3xl font-bold mt-12 mb-6 text-zinc-900 dark:text-white;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-semibold mt-10 mb-4 text-zinc-900 dark:text-white;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold mt-8 mb-3 text-zinc-900 dark:text-white;
+  }
+
+  .prose p {
+    @apply mb-5;
+  }
 
   .prose a {
-    @apply text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors;
+    @apply text-indigo-600 dark:text-indigo-400 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-700 hover:decoration-indigo-400 transition-all duration-200;
   }
 
-  .prose ul { @apply list-disc pl-6 mb-4 space-y-1; }
-  .prose ol { @apply list-decimal pl-6 mb-4 space-y-1; }
-  .prose li { @apply text-gray-700 dark:text-gray-300; }
+  .prose ul {
+    @apply my-4 space-y-2;
+  }
+
+  .prose ol {
+    @apply my-4 space-y-2;
+  }
+
+  .prose li {
+    @apply text-zinc-600 dark:text-zinc-400;
+  }
 
   .prose blockquote {
-    @apply border-l-4 border-indigo-400 pl-4 my-4 italic text-gray-600 dark:text-gray-400;
+    @apply border-l-4 border-indigo-500/30 pl-5 my-6 text-zinc-500 dark:text-zinc-400 italic;
   }
 
   .prose code:not(pre code) {
-    @apply bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 px-1.5 py-0.5 rounded text-sm font-mono;
+    @apply bg-zinc-100 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded text-sm font-mono;
   }
 
   .prose pre {
-    @apply bg-gray-900 dark:bg-gray-800 text-gray-100 rounded-xl p-5 overflow-x-auto mb-5 text-sm leading-relaxed;
+    @apply bg-zinc-950 text-zinc-100 rounded-lg p-5 my-6 text-sm font-mono overflow-x-auto;
   }
 
   .prose pre code {
-    @apply text-inherit bg-transparent p-0;
+    @apply bg-transparent p-0;
   }
 
   .prose img {
-    @apply rounded-lg shadow-md mx-auto;
+    @apply rounded-lg my-8;
   }
 
   .prose table {
-    @apply w-full border-collapse mb-4;
+    @apply w-full my-6 text-sm;
   }
+
   .prose th {
-    @apply border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-2 text-left font-semibold;
+    @apply border-b border-zinc-200 dark:border-zinc-800 pb-3 text-left font-medium text-zinc-500;
   }
+
   .prose td {
-    @apply border border-gray-200 dark:border-gray-700 px-4 py-2;
+    @apply py-3;
   }
 
   .prose hr {
-    @apply border-gray-200 dark:border-gray-700 my-8;
+    @apply border-zinc-200 dark:border-zinc-800 my-10;
+  }
+
+  .prose strong {
+    @apply font-semibold text-zinc-900 dark:text-white;
+  }
+}
+
+@layer utilities {
+  /* 平滑过渡 */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* 精致悬停效果 */
+  .hover-lift {
+    @apply transition-smooth hover:-translate-y-0.5;
+  }
+
+  /* 渐变文字 */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400;
+  }
+
+  /* 微妙边框 */
+  .border-subtle {
+    @apply border-zinc-200/60 dark:border-zinc-800/60;
+  }
+
+  /* 背景纹理 */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgb(var(--color-primary) / 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }

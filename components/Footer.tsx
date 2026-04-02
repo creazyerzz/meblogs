@@ -1,29 +1,27 @@
+import Link from 'next/link'
+
 export default function Footer() {
-  const year = new Date().getFullYear()
   return (
-    <footer className="border-t border-gray-100 dark:border-gray-800 mt-16">
-      <div className="max-w-3xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-400">
-        <span>© {year} 我的博客 · 保留所有权利</span>
-        <span>
-          Built with{' '}
-          <a
-            href="https://nextjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-indigo-500 transition-colors"
-          >
-            Next.js
-          </a>
-          {' & '}
-          <a
-            href="https://tailwindcss.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-indigo-500 transition-colors"
-          >
-            Tailwind CSS
-          </a>
-        </span>
+    <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
+      <div className="max-w-3xl mx-auto px-6 py-6">
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-zinc-500">
+            © 2026 周广晨
+          </p>
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://github.com/creazyerzz" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+            <Link href="/" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              博客
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )

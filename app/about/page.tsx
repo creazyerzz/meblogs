@@ -6,169 +6,94 @@ export const metadata: Metadata = {
   description: '了解博主',
 }
 
-const skills = [
-  { category: '后端开发', items: ['Java', 'Spring Boot', '微服务', '分布式系统'] },
-  { category: '架构设计', items: ['系统设计', '领域驱动设计', '设计模式', '架构重构'] },
-  { category: '数据库', items: ['MySQL', 'Redis', 'MongoDB', 'Elasticsearch'] },
-  { category: 'DevOps', items: ['Docker', 'Kubernetes', 'CI/CD', 'Linux'] },
-]
-
-const stats = [
-  { label: '博客文章', value: '20+' },
-  { label: '技术标签', value: '15+' },
-  { label: '开源项目', value: '5+' },
-]
-
-const links = [
-  { 
-    name: 'GitHub', 
-    url: 'https://github.com/creazyerzz',
-    icon: '🎯'
-  },
-]
-
 export default function About() {
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-8 mb-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20" />
-        <div className="relative flex flex-col md:flex-row items-center gap-6">
-          <div className="w-28 h-28 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-5xl font-bold text-white shadow-xl border-4 border-white/30">
+    <div className="max-w-3xl mx-auto px-6 py-12 lg:py-16">
+      <Link 
+        href="/" 
+        className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors mb-12"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        返回博客
+      </Link>
+
+      <header className="mb-12">
+        <div className="flex items-start gap-5 mb-6">
+          <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shrink-0">
             ZGC
           </div>
-          <div className="text-center md:text-left text-white">
-            <h1 className="text-3xl font-bold mb-2">周广琛</h1>
-            <p className="text-lg text-white/90 mb-3">Java 后端工程师 · 架构设计爱好者</p>
-            <div className="flex items-center gap-2 justify-center md:justify-start text-white/80">
-              <span>📍</span>
-              <span>中国北京</span>
-            </div>
+          <div className="pt-2">
+            <h1 className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">
+              周广晨
+            </h1>
+            <p className="text-lg text-indigo-600 dark:text-indigo-400 font-medium">
+              AI全栈工程师 · AI Agent工程师
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* 统计卡片 */}
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
-          >
-            <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">
-              {stat.value}
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
+        <div className="space-y-4">
+          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            你好！我是一名专注于 AI 全栈开发的工程师，对大语言模型应用、
+            智能 Agent 系统、RAG 知识库等领域有深入研究与实践经验。
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            在这个博客中，我记录自己在 AI 应用开发中的技术探索、实战经验与深度思考。
+            希望能够帮助更多开发者了解并应用 AI 技术。
+          </p>
+        </div>
+      </header>
 
-      {/* 关于我 */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-8 mb-8 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <span className="text-2xl">👨‍💻</span>
-          关于我
+      <section className="mb-12">
+        <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-5">
+          专注领域
         </h2>
-        <div className="prose dark:prose-invert max-w-none space-y-4">
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            你好！我是一名专注于 Java 后端开发的工程师，对分布式系统、高并发架构设计有着浓厚的兴趣。
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            在这个博客中，我分享自己在工作中的技术实践、踩坑经历以及对技术的深度思考。
-            希望能够通过文字记录成长，同时帮助到有需要的同行。
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            当前专注于：
-          </p>
-          <ul className="list-none space-y-2">
-            {[
-              '🖥️ Java 后端开发与性能优化',
-              '🏗️ 分布式系统设计与实现',
-              '🤖 AI 应用开发（LangChain/LangGraph）',
-              '📝 技术博客与知识沉淀',
-              '⚡ 算法与数据结构'
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { title: 'AI Agent 开发', desc: 'LangChain、LangGraph、Agent 系统设计' },
+            { title: 'LLM 应用', desc: 'Prompt 工程、RAG 知识库构建' },
+            { title: '全栈开发', desc: 'Python、Node.js、React' },
+            { title: '向量数据库', desc: 'Pinecone、Milvus、Weaviate' },
+          ].map((item) => (
+            <div key={item.title} className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+              <h3 className="font-medium text-zinc-900 dark:text-white mb-1">{item.title}</h3>
+              <p className="text-sm text-zinc-500">{item.desc}</p>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      {/* 技术栈 */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-8 mb-8 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <span className="text-2xl">🛠️</span>
+      <section className="mb-12">
+        <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-5">
           技术栈
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {skills.map((skill) => (
-            <div key={skill.category} className="space-y-3">
-              <h3 className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-                {skill.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {skill.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1 bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-medium"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
+        <div className="flex flex-wrap gap-2">
+          {['LLM', 'LangChain', 'LangGraph', 'RAG', 'Python', 'FastAPI', 'Node.js', 'React', 'Next.js', '向量数据库', 'Docker'].map((tech) => (
+            <span key={tech} className="px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800/50 text-sm text-zinc-700 dark:text-zinc-300">
+              {tech}
+            </span>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* 联系方式 */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-8 mb-8 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <span className="text-2xl">📬</span>
+      <section>
+        <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">
           联系方式
         </h2>
-        <div className="space-y-4">
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
-            >
-              <span className="text-3xl">{link.icon}</span>
-              <div>
-                <div className="font-semibold text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                  {link.name}
-                </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
-                  {link.url}
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* 博客导航 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-xl p-8 text-center">
-        <h3 className="text-xl font-bold mb-3">想看更多技术文章？</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
-          欢迎浏览我的博客，探索更多技术内容
-        </p>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors shadow-lg shadow-indigo-500/30"
+        <a 
+          href="https://github.com/creazyerzz" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
         >
-          <span>🚀</span>
-          <span>访问博客首页</span>
-        </Link>
-      </div>
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          github.com/creazyerzz
+        </a>
+      </section>
     </div>
   )
 }
